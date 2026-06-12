@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<h2>Mark Attendence </h2>
+    <form action="/save_attendence"method="POST">
+        <label>Student </label>
+        <select name="student_id" 
+                class="form-control">
+            {% for student in students %}
+            <option value="{{ student.student_id }}">
+                {{ student.first_name }} {{ student.last_name }}
+            </option>
+            {%endfor %}
+        <select>
+        <br><br>
+        <label>Status</label>
+        <select name="attendence_status" >
+
+            <option value="Present">
+                Present
+            </option>
+
+            <option value="Leave">
+                Leave
+            </option>
+
+            <option value="Half_Day">
+                Half_Day
+            </option>
+
+            <option value="Absent">
+                Absent
+            </option>
+
+        </select>
+        <br><br>
+        <button type="submit">
+            Save Attendence
+        </button>
+    </form>
+{% endblock %}

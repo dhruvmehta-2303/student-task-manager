@@ -1,0 +1,67 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<h2>Attendence Summary Report</h2>
+
+<table 
+     id="attendence_summary_table"
+     class="table table-bordered table-striped mt-4 text-center"
+
+
+
+     <thead class="table-dark">
+
+        <tr>
+
+            <th>Date</th>
+            <th>Present</th>
+            <th>Half_Day</th>
+            <th>Leave</th>
+            <th>Absent</th> 
+            <th>Total Records</th>
+
+        </tr>
+
+    </thead>
+
+    <tbody>
+
+        {% for record in attendence_summary_records%}
+
+        <tr>
+
+            <td>{{ record.attendence_date }}</td>
+
+            <td>{{ record.total_present }}</td>
+
+            <td>{{ record.total_Half_Day }}</td>
+
+            <td>{{ record.total_absent }}</td>
+
+            <td>{{ record.total_leave }}</td>
+            
+            <td>{{ record.total_records }}</td>
+        </tr>
+
+        {% endfor %}
+
+    </tbody>
+
+</table>
+
+{% endblock %}
+
+
+{% block scripts %}
+
+<script>
+
+    $(document).ready(function() {
+
+        $('#attendence_summary_table').DataTable();
+
+    });
+
+</script>
+
+{% endblock %}
