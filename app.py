@@ -866,39 +866,6 @@ def performance_report():
         performance_records=performance_records
     )
 
-@app.route('/delete_student/<int:student_id>')
-def delete_student(student_id):
-    if 'user_id' not in session:
-            return redirect('/login')
-
-    connection = get_database_connection()
-    cursor = connection.cursor()
-
-    # Delete attendance records
-    cursor.execute(
-        "DELETE FROM attendence WHERE student_id = %s",
-        (student_id,)
-    )
-
-    # Delete task records
-    cursor.execute(
-        "DELETE FROM student_tasks WHERE student_id = %s",
-        (student_id,)
-    )
-
-    # Delete student
-    cursor.execute(
-        "DELETE FROM students WHERE student_id = %s",
-        (student_id,)
-    )
-
-    connection.commit()
-
-    cursor.close()
-    connection.close()
-
-    return redirect('/students')
-
 # Attendence Page
 @app.route('/attendence')
 def attendence():
