@@ -865,11 +865,12 @@ def performance_report():
         'performance_report.html',
         performance_records=performance_records
     )
-if __name__ == '__main__':
-    app.run(debug=True) 
 
 @app.route('/delete_student/<int:student_id>')
 def delete_student(student_id):
+    if 'user_id' not in session:
+            return redirect('/login')
+
     connection = get_database_connection()
     cursor = connection.cursor()
 
